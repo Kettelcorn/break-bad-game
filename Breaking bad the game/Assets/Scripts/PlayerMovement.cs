@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     private float move;
     private bool jumpCounter;
+
+    public ProjectileBehaviour ProjectilePrefab;
+    public Transform LaunchOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             jumpCounter = false;
             Debug.Log("jump");
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
         }
     }
 

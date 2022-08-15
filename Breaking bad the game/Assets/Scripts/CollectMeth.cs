@@ -8,7 +8,7 @@ public class CollectMeth : MonoBehaviour
 {
     [SerializeField] private GameObject methBag;
     [SerializeField] private AudioSource collectSound;
-    [SerializeField] private Sprite walterGun;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class CollectMeth : MonoBehaviour
         {
             Destroy(methBag);
             collectSound.Play();
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = walterGun;
+        
         }
     }
 }
