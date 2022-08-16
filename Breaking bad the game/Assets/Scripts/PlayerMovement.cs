@@ -6,20 +6,27 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jump;
-    
+
     private Rigidbody2D rb;
     private bool isJumping;
     private float move;
     private bool jumpCounter;
 
+
     public ProjectileBehaviour ProjectilePrefab;
     public Transform LaunchOffset;
+
+    public bool hasGun;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         jumpCounter = false;
+
+        hasGun = false;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -43,9 +50,9 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("jump");
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && hasGun)
         {
-            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+                Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
         }
     }
 
