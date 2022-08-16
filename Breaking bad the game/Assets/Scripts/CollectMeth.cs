@@ -8,26 +8,14 @@ public class CollectMeth : MonoBehaviour
 {
     [SerializeField] private GameObject methBag;
     [SerializeField] private AudioSource collectSound;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // on collision, destroy meth bag
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(methBag);
             collectSound.Play();
-        
         }
     }
 }

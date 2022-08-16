@@ -9,22 +9,8 @@ public class CollectGun : MonoBehaviour
     [SerializeField] private AudioSource collectSound;
     [SerializeField] private Sprite walterGun;
 
-    
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {  
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // on collision, change sprite to have walter carry gun
+    // and destroy gun
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))

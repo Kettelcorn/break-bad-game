@@ -4,73 +4,91 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private ProjectileBehaviour ProjectilePrefab;
+    [SerializeField] private Transform LaunchOffset;
+
     [SerializeField] private float speed;
     [SerializeField] private float jump;
+    [SerializeField] private float offset;
 
     private Rigidbody2D rb;
     private bool isJumping;
+    private bool jumpTracker;
     private float move;
-    private bool jumpCounter;
-
-
-    public ProjectileBehaviour ProjectilePrefab;
-    public Transform LaunchOffset;
 
     public bool hasGun;
+    public int direction;
 
-    // Start is called before the first frame update
+    // set rigid body and jumpTracker/hasGun to false
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpCounter = false;
-
+        jumpTracker = false;
         hasGun = false;
+        direction = 1;
     }
 
-
-    // Update is called once per frame
+    // set up inputs for play actions
     void Update()
     {
         // horizontal movement
         move = Input.GetAxis("Horizontal");
-
         rb.velocity = new Vector2(speed * move, rb.velocity.y);
 
-        // lets jump
+        // orients sprite based on which way you are moving
+        if (move > 0)
+        {
+            gameObject.transform.localScale = new Vector3(10, 10, 0);
+            direction = 1;
+        }
+        
+        if (move < 0)
+        {
+            gameObject.transform.localScale = new Vector3(-10, 10, 0);
+            direction = -1;
+        }
+
+
+        // jump
         if (Input.GetButtonDown("Jump") && isJumping == false)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
-            jumpCounter = true;
+            jumpTracker = true;
             Debug.Log("jump");
-        } else if (Input.GetButtonDown("Jump") && jumpCounter == true) 
+        }
+        // double jump
+        else if (Input.GetButtonDown("Jump") && jumpTracker == true) 
         {
             rb.velocity = new Vector2(0, 0);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
-            jumpCounter = false;
+            jumpTracker = false;
             Debug.Log("jump");
         }
 
+        // gun fire
         if (Input.GetButtonDown("Fire1") && hasGun)
         {
-                Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
         }
     }
 
+    // on collision with ground, set jumping trackers to false
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
-            jumpCounter = false;
+            jumpTracker = false;
         }   
     }
 
+    // on exiting collision with ground, set jumping trackers to true
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = true;
-            jumpCounter = true;
+            jumpTracker = true;
         }
     }
 
