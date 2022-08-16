@@ -29,7 +29,7 @@ public class CollectGun : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            walter.GetComponent<PlayerMovement>().hasGun = true;
+            walter.GetComponent<Player>().hasGun = true;
             Destroy(gun);
             collectSound.Play();
             walter.gameObject.GetComponent<SpriteRenderer>().sprite = walterGun;
