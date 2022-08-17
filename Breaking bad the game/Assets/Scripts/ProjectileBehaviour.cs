@@ -3,7 +3,8 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private GameObject walter;
+
+    private GameObject walter;
 
     public int bulletDirection = 1;
 
@@ -20,8 +21,9 @@ public class ProjectileBehaviour : MonoBehaviour
     }
 
     // on collision, destroy projectile
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("OnCollisionEnter2D");
         Destroy(gameObject);
     }
 
