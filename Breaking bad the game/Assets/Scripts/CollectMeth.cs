@@ -9,8 +9,8 @@ public class CollectMeth : MonoBehaviour
     [SerializeField] private GameObject methBag;
     [SerializeField] private AudioSource collectSound;
 
-    // on collision, destroy meth bag
-    private void OnCollisionEnter2D(Collision2D other)
+    // on trigger, destroy meth bag
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private ProjectileBehaviour ProjectilePrefab;
     [SerializeField] private Transform LaunchOffset;
+    [SerializeField] private GameObject walter;
+    [SerializeField] private Sprite walterGun;
 
     [SerializeField] private float speed;
     [SerializeField] private float jump;
@@ -69,6 +71,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && hasGun)
         {
             Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+        }
+
+        if (hasGun)
+        {
+            walter.gameObject.GetComponent<SpriteRenderer>().sprite = walterGun;
+            //walter.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(walterGun.rect.width, walterGun.rect.height);
         }
     }
 
