@@ -76,7 +76,6 @@ public class Player : MonoBehaviour
         if (hasGun)
         {
             walter.gameObject.GetComponent<SpriteRenderer>().sprite = walterGun;
-            //walter.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(walterGun.rect.width, walterGun.rect.height);
         }
     }
 
