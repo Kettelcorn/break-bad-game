@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public bool hasGun;
     public int direction;
 
+    public int methCount;
+
     // set rigid body and jumpTracker/hasGun to false
     void Start()
     {
