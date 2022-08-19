@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         jumpTracker = false;
         hasGun = false;
         direction = 1;
+        methCount = 0;
     }
 
     // set up inputs for play actions
