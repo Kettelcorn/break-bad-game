@@ -5,7 +5,6 @@ public class ProjectileBehaviour : MonoBehaviour
     [SerializeField] private float speed;
 
     private GameObject walter;
-
     public int bulletDirection = 1;
 
     private void Start()
@@ -14,6 +13,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if (walter.GetComponent<Player>().direction == -1)
             bulletDirection = -1;
     }
+
     // transform position of projectile
     private void Update()
     {   
