@@ -13,10 +13,9 @@ public class EnemyBehavior : MonoBehaviour, Enemy
     [SerializeField] private float rotateSpeed;
     [SerializeField] private bool death;
     
-
-  
     private Rigidbody2D rb;
     private int counter;
+
     // Start is called before the first frame update
     void Start()
     {
